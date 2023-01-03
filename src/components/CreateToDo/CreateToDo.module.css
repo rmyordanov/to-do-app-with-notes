@@ -1,0 +1,24 @@
+.duration-input {
+  padding: 5px 20px;
+  border: 1px solid grey;
+  border-radius: 15px;
+}
+.options {
+  display: flex;
+  justify-content: space-around;
+}
+.no-tasks {
+  margin: 50px 0px;
+}
+.create {
+  text-align: center;
+  margin: 50px;
+  height: 50vh;
+  margin-top: 150px;
+}
+.actions label {
+  margin-right: 10px;
+}
+.duration {
+  background: white;
+}

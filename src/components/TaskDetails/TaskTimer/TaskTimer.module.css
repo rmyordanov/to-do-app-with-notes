@@ -1,0 +1,15 @@
+.action-btns {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.action-btns img {
+  margin: 0px 5px;
+}
+.task-duration {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}

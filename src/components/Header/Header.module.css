@@ -1,0 +1,65 @@
+header {
+  background: linear-gradient(180deg, #b5c7fe, transparent);
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav img {
+  max-width: 150px;
+}
+nav li:not(.welcome-msg) {
+  background: #233cc1;
+  padding: 5px 15px;
+  margin: 10px;
+  border: 1px solid #233cc1;
+  border-radius: 25px;
+  cursor: pointer;
+}
+nav .li:not(.welcome-msg) {
+  background: #233cc1;
+  padding: 5px 15px;
+  margin: 10px;
+  border: 1px solid #233cc1;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+nav a {
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+}
+.guest,
+.user {
+  display: inline-flex;
+  align-items: center;
+}
+
+.guest li,
+.user li {
+  display: inline-flex;
+  margin-right: 10px;
+}
+
+.guest li a,
+.user li a {
+  text-decoration: none;
+}
+
+.guest .li,
+.user .li {
+  display: inline-flex;
+  margin-right: 10px;
+}
+
+.guest .li a,
+.user .li a {
+  text-decoration: none;
+}
+
+li.welcome-msg:hover,
+a.logo:hover {
+  background-color: transparent !important;
+}

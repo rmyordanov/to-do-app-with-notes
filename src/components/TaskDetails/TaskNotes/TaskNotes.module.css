@@ -1,0 +1,40 @@
+.note {
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  align-items: center;
+}
+
+.note-card {
+  min-width: 280px;
+  height: 300px;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.text h3 {
+  margin: 15px 0px;
+}
+.text p {
+  margin-bottom: 15px;
+  word-break: break-word;
+}
+
+.action-btns {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.action-btns img {
+  margin: 0px 5px;
+}
+
+.overlay a.edit {
+  display: none;
+}

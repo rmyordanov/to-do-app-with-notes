@@ -1,0 +1,79 @@
+.caledar {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+  margin: auto;
+  margin: 20px 40px;
+}
+.monthName {
+  text-align: center;
+  margin-top: 20px;
+}
+.monthName h3 {
+  border-radius: 25px;
+  padding: 15px 0px;
+}
+.week {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.category-cards {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0px;
+  align-items: center;
+  overflow: auto;
+}
+
+.add-category-btn {
+  margin-right: 20px;
+  align-items: center;
+}
+
+.fade-in {
+  width: 1px;
+  opacity: 0;
+  transition: all 0.75s ease;
+}
+/* form {
+  display: none;
+} */
+.fade-in.show {
+  display: block;
+  opacity: 1;
+  width: 450px;
+}
+
+.addCategoryInput {
+  border: 1px solid grey;
+  border-radius: 25px;
+  padding: 5px 20px;
+}
+
+a.add-plus-btn {
+  width: fit-content;
+}
+
+.show {
+  display: flex !important;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* form.show {
+  display: flex;
+} */
+
+.show h3 {
+  margin: 10px;
+}
+
+.btns {
+  text-align: center;
+  margin: 20px;
+}
+
+.btns input {
+  margin-right: 20px !important;
+}

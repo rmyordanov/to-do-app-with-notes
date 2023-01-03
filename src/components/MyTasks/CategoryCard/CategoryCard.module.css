@@ -1,0 +1,30 @@
+.category-card {
+  border: 1px solid grey;
+  border-radius: 25px;
+  padding: 20px 30px;
+  margin: 0px 30px;
+  min-height: 350px;
+  min-width: 400px;
+  text-align: center;
+}
+.category-card.home {
+  background: rgba(181, 199, 254, 0.4);
+}
+.category-card.work {
+  background: rgba(118, 147, 248, 0.4);
+}
+.category-card.completed {
+  background: rgba(35, 60, 193, 0.4);
+}
+.over {
+  background-color: #7693f8;
+}
+
+.deleteBtn {
+  float: right;
+  font-weight: bold;
+}
+
+label {
+  font-weight: 600;
+}

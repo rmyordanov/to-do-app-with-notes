@@ -1,0 +1,20 @@
+.date {
+  cursor: pointer;
+  text-align: center;
+  margin: 0px 20px;
+}
+.date.active {
+  border: 1px solid grey;
+  border-radius: 35px;
+  padding: 10px;
+  background: #7693f8;
+  min-height: 60px;
+  min-width: 45px;
+}
+.date.active {
+  color: white;
+}
+.date p {
+  margin: 10px 0px;
+  font-weight: 600;
+}

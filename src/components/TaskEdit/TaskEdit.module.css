@@ -1,0 +1,50 @@
+.card {
+  border: 1px solid grey;
+  border-radius: 25px;
+  padding: 20px;
+  margin: 50px 20px;
+  text-align: center;
+  background: #e9eefd;
+  width: 500px;
+}
+
+.to-do-title {
+  /* margin-top: 20px; */
+  margin-bottom: 20px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+.edit-form .editBtn {
+  width: fit-content;
+  margin: auto;
+  padding: 10px 40px;
+}
+
+.close-btn {
+  float: right;
+  font-weight: bold;
+}
+
+.edit-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.duration {
+  margin: auto;
+  padding: 20px;
+}
+
+.duration input {
+  background-color: transparent;
+  text-align: center;
+  font-size: 26px;
+}
+
+.duration label {
+  padding-right: 10px;
+}

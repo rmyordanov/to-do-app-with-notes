@@ -1,0 +1,63 @@
+/* EDIT NOTE CSS */
+.edit-note {
+  display: block;
+}
+.edit-note-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.edit-note-form .editNoteBtn {
+  flex: 2;
+  width: fit-content;
+  padding: 10px;
+}
+input.edit-note-input {
+  margin: 0px 10px;
+  width: 90%;
+}
+
+/*EDIT TASK CSS*/
+.card {
+  border: 1px solid grey;
+  border-radius: 25px;
+  padding: 20px;
+  margin: 50px 20px;
+  text-align: center;
+  background: #e9eefd;
+  width: 600px;
+}
+
+.to-do-title {
+  /* margin-top: 20px; */
+  margin-bottom: 20px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+.edit-form .editBtn {
+  width: fit-content;
+  margin: auto;
+  padding: 10px 40px;
+}
+
+.close-btn {
+  float: right;
+  font-weight: bold;
+}
+
+.edit-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-area textarea {
+  height: 250px;
+  width: 400px;
+  padding: 15px;
+  border-radius: 25px;
+  margin: 10px;
+}

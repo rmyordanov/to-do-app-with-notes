@@ -1,0 +1,147 @@
+.card {
+  border: 1px solid grey;
+  border-radius: 25px;
+  padding: 20px;
+  margin: 50px 20px;
+  text-align: center;
+  background: #e9eefd;
+}
+.to-do-title {
+  /* margin-top: 20px; */
+  margin-bottom: 20px;
+}
+.top-part {
+  display: flex;
+  justify-content: space-between;
+}
+.action-btns {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.action-btns img {
+  margin: 0px 5px;
+}
+.addNote,
+.notes {
+  margin: 40px;
+}
+
+.note li {
+  display: block;
+}
+.note li {
+  margin: 0px 10px;
+}
+.note-cards {
+  margin: 50px 0px 35px 0px;
+  display: flex;
+  overflow: auto;
+  align-items: center;
+  padding-top: 20px;
+  position: relative;
+  z-index: 6;
+}
+.notes-slider {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0px;
+  align-items: center;
+}
+
+.add-plus-note-btn {
+  margin: 0px 20px;
+}
+.overall-task-duration {
+  display: flex;
+  justify-content: space-around;
+}
+.expand-btn {
+  text-align: end;
+  font-size: 25px;
+}
+
+.fade-in {
+  width: 1px;
+  opacity: 0;
+  transition: all 0.75s ease;
+}
+.form {
+  display: none;
+}
+.fade-in.show {
+  display: block;
+  opacity: 1;
+  width: 450px;
+}
+
+.addNoteInput {
+  border: 1px solid grey;
+  border-radius: 25px;
+  padding: 10px 20px;
+  width: 100%;
+  margin: 10px 0px;
+}
+
+textarea {
+  width: 100%;
+  margin: 10px 0px;
+}
+
+a.add-plus-btn {
+  width: fit-content;
+}
+
+.overlay {
+  position: relative;
+}
+.overlay .add-plus-note-btn {
+  display: none;
+}
+.overlay .check,
+.overlay a.check,
+.overlay .delete,
+.overlay a.delete {
+  position: relative;
+  z-index: 6;
+}
+.overlay::before {
+  background-color: #caffbf;
+  opacity: 0.5;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  content: "";
+  z-index: 5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 25px;
+}
+
+.overlay .edit {
+  display: none;
+}
+
+.uncheck {
+  position: relative;
+  z-index: 6;
+}
+
+.search-result {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.btns input {
+  margin-right: 20px;
+}
+
+.show h3 {
+  margin: 10px;
+}
+
+.search-notes {
+  display: flex;
+}

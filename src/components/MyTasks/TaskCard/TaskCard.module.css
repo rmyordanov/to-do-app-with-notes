@@ -1,0 +1,41 @@
+.task-card {
+  /* background: white; */
+  padding: 20px 20px 0px;
+  border-radius: 25px;
+  min-width: 200px;
+  margin: 20px 0px;
+  cursor: pointer;
+  box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px,
+    rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+  transform: translate3d(0px, 0px, 0px);
+}
+.task-card .drag-and-drop-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.urgent {
+  background: #ff686b;
+}
+.high {
+  background: #f4978e;
+}
+.medium {
+  background-color: #ffd6a5;
+}
+.low {
+  background-color: #fdffb6;
+}
+.completed {
+  background-color: #caffbf;
+}
+
+.bottom-part {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.bottom-part label {
+  font-weight: normal;
+}
