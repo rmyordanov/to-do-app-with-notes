@@ -2,7 +2,7 @@
   "name": "react-firebase-to-do-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rmyordanov.github.io/To-Do-App-with-Note-Taking-Feature",
+  "homepage": "https://rmyordanov.github.io/to-do-app-with-notes",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
