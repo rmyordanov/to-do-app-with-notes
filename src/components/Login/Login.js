@@ -33,8 +33,8 @@ const Login = () => {
             setUser(currentUser);
             e.target.reset();
             setUserData(currentUser);
-            updateUserNav();
-            navigate("/");
+            // updateUserNav();
+            navigate("/my-tasks");
           });
         } else {
           return;

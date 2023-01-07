@@ -42,7 +42,6 @@ h2 {
 }
 .video-cards {
   display: flex;
-
   justify-content: space-between;
 }
 .video-card {
@@ -68,4 +67,31 @@ iframe {
 }
 .article-card p {
   margin: 20px 0px;
+}
+
+/* Mobile */
+@media only screen and (max-width: 991px) {
+  .home-slider {
+    flex-direction: column-reverse;
+    padding: 0px;
+    /* background-image: url("/public/images/hero-img.jpg");
+    background-size: contain; */
+  }
+
+  .text-part {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .text-part h1 {
+    margin: 0px;
+  }
+
+  .video-cards {
+    flex-direction: column;
+  }
+
+  .articles {
+    padding: 20px;
+  }
 }

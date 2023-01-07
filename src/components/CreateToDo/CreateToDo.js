@@ -1,12 +1,18 @@
 import styles from "./CreateToDo.module.css";
 
-import { createTask, getAllCategories, getUserData } from "../../api/data";
+import {
+  createCategory,
+  createTask,
+  getAllCategories,
+  getUserData,
+} from "../../api/data";
 import { useNavigate } from "react-router-dom";
 import { serverTimestamp } from "firebase/database";
 import { useEffect, useState } from "react";
 
 const CreateToDo = () => {
   const [categories, setCategories] = useState([]);
+  const [addCategory, setAddCategory] = useState(false);
 
   const date = new Date();
   const year = date.getFullYear();
@@ -23,6 +29,7 @@ const CreateToDo = () => {
 
   const navigate = useNavigate();
   const userData = getUserData();
+
   const submitHandler = e => {
     e.preventDefault();
 
@@ -61,9 +68,16 @@ const CreateToDo = () => {
       ) {
         throw new Error("No Empty Fields!");
       }
-      createTask(data);
+
+      if (userData.uid) {
+        createTask(userData.uid, data);
+        createCategory(userData.uid, category);
+        e.target.reset();
+        navigate("/my-tasks");
+      } else {
+        throw new Error("You need to login or register");
+      }
       e.target.reset();
-      navigate("/my-tasks");
     } catch (error) {
       alert(error.message);
     }
@@ -71,11 +85,16 @@ const CreateToDo = () => {
 
   useEffect(() => {
     const getCategories = async () => {
-      const data = await getAllCategories();
-      setCategories(Object.keys(data));
+      const data = await getAllCategories(userData.uid);
+      if (data) {
+        setCategories(Object.keys(data));
+      } else {
+        return;
+      }
     };
     getCategories();
   }, []);
+
   return (
     <>
       <div className={styles.create}>
@@ -87,9 +106,9 @@ const CreateToDo = () => {
         {/* <!--Add Todo Form--> */}
         <div className="form">
           <form onSubmit={submitHandler}>
-            <div className="addToDo">
+            <div className={styles.addToDo}>
               <input
-                className="add"
+                className={`add ${styles.input}`}
                 type="text"
                 name="title"
                 placeholder="Add to do..."
@@ -98,20 +117,39 @@ const CreateToDo = () => {
             </div>
 
             <div className={`${"actions"} ${styles.options}`}>
-              <div className="actions">
-                <label>Select Category</label>
-                <div>
-                  <select name="category" id="categories">
-                    {categories.map(c => (
-                      <option key={c} defaultValue={c}>
-                        {c}
-                      </option>
-                    ))}
-                  </select>
+              <div className={styles.actions}>
+                {categories.length > 0 ? (
+                  <label>Select Category</label>
+                ) : (
+                  <label>Add Category</label>
+                )}
+
+                <div
+                  onChange={e => {
+                    if (e.target.value === "Add Category") {
+                      setAddCategory(true);
+                    }
+                  }}>
+                  {categories.length > 0 && !addCategory ? (
+                    <select name="category" id="categories">
+                      {categories.map(c => (
+                        <option key={c} defaultValue={c}>
+                          {c}
+                        </option>
+                      ))}
+                      <option>Add Category</option>
+                    </select>
+                  ) : (
+                    <input
+                      className={styles["add-category"]}
+                      type="text"
+                      name="category"
+                    />
+                  )}
                 </div>
               </div>
 
-              <div className="actions">
+              <div className={styles.actions}>
                 <label>Select Priority: </label>
                 <div>
                   <select name="priority" id="priorities">
@@ -184,12 +222,6 @@ const CreateToDo = () => {
               </div>
             </div>
           </form>
-        </div>
-
-        {/* // <!--NO TASKS CONTENT--> */}
-        <div className={styles["no-tasks"]}>
-          <h2>NO TASKS YET.</h2>
-          <p>START YOUR FIRST ONE</p>
         </div>
       </div>
     </>

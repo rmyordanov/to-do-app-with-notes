@@ -13,6 +13,7 @@ import {
   getAllNotes,
   getOneTask,
   updateTask as update,
+  getUserData,
 } from "../../api/data";
 
 import TaskNotes from "./TaskNotes/TaskNotes";
@@ -24,6 +25,7 @@ import TaskEdit from "../TaskEdit/TaskEdit";
 export const TaskContext = React.createContext();
 
 const TaskDetails = ({ id, task, getUpdatedTask }) => {
+  const userData = getUserData();
   const [notes, setNotes] = useState([]);
   const [addNote, setAddNote] = useState(false);
   const [clicked, setClicked] = useState(false);
@@ -53,18 +55,21 @@ const TaskDetails = ({ id, task, getUpdatedTask }) => {
 
     if (e.target.className === `${styles.check}`) {
       setIsCompleted(true);
-      update(updatedTask._id, {
+      update(userData.uid, updatedTask._id, {
         complete: true,
         completedAt: serverTimestamp(),
       });
     }
     if (e.target.className === `${styles.uncheck}`) {
       setIsCompleted(false);
-      update(updatedTask._id, { complete: false, completedAt: "In Progress" });
+      update(userData.uid, updatedTask._id, {
+        complete: false,
+        completedAt: "In Progress",
+      });
     }
 
     const getUpdateTaskAfterComplete = async () => {
-      const a = await getOneTask(updatedTask._id);
+      const a = await getOneTask(userData.uid, updatedTask._id);
       setUpdatedTask(a);
     };
 
@@ -72,7 +77,7 @@ const TaskDetails = ({ id, task, getUpdatedTask }) => {
   };
 
   const getNotes = async () => {
-    const nData = await getAllNotes(task._id);
+    const nData = await getAllNotes(userData.uid, task._id);
     if (nData === null || nData === undefined) {
       setNotes([]);
       return;
@@ -87,10 +92,10 @@ const TaskDetails = ({ id, task, getUpdatedTask }) => {
 
     getNotes();
   }, [
-    task._id,
-    task.durationH,
-    task.durationM,
-    task.durationS,
+    updatedTask._id,
+    updatedTask.durationH,
+    updatedTask.durationM,
+    updatedTask.durationS,
     clicked,
     isOpenModal,
     updatedTask,
@@ -120,7 +125,7 @@ const TaskDetails = ({ id, task, getUpdatedTask }) => {
       if (note === "" || noteText === "") {
         throw new Error("No Empty Fields!");
       }
-      createNote(id, { note, noteText });
+      createNote(userData.uid, id, { note, noteText });
       e.target.reset();
       getNotes();
     } catch (error) {
@@ -214,7 +219,7 @@ const TaskDetails = ({ id, task, getUpdatedTask }) => {
               className={`check ${styles.check}`}>
               <img
                 className={isCompleted ? styles.uncheck : styles.check}
-                src="/images/checked.png"
+                src="/react-firebase-to-do-app/images/checked.png"
                 alt=""
               />
             </a>
@@ -226,7 +231,7 @@ const TaskDetails = ({ id, task, getUpdatedTask }) => {
               data-tippy="Edit Task"
               data-tippy-pos="up"
               className="edit">
-              <img src="/images/edit (1).png" alt="" />
+              <img src="/react-firebase-to-do-app/images/edit (1).png" alt="" />
             </a>
             <a
               onClick={deleteHandler}
@@ -236,7 +241,7 @@ const TaskDetails = ({ id, task, getUpdatedTask }) => {
               className={`delete ${styles.delete}`}>
               <img
                 className={`delete-note-img" ${styles.delete}`}
-                src="/images/trash-bin.png"
+                src="/react-firebase-to-do-app/images/trash-bin.png"
                 alt=""
               />
             </a>
@@ -276,9 +281,9 @@ const TaskDetails = ({ id, task, getUpdatedTask }) => {
         {notes.length !== 0 ? (
           <div className={styles["note-cards"]}>
             <SlArrowLeft
-              size={50}
+              size={30}
               onClick={() => sliderAction.scrollLeftArrow("notes-slider")}
-              className="text-[#233cc1] cursor-pointer hover:text-lightpurple mr-5"
+              className="text-[#233cc1] cursor-pointer hover:text-lightpurple mr-2.5"
             />
             <div
               onClick={e => {
@@ -386,7 +391,7 @@ const TaskDetails = ({ id, task, getUpdatedTask }) => {
                     }>
                     <img
                       className={"add-img-btn"}
-                      src="/images/plus.png"
+                      src="/react-firebase-to-do-app/images/plus.png"
                       alt=""
                     />
                   </a>
@@ -394,13 +399,14 @@ const TaskDetails = ({ id, task, getUpdatedTask }) => {
               )}
             </div>
             <SlArrowRight
-              size={50}
+              size={30}
               onClick={() => sliderAction.scrollRightArrow("notes-slider")}
-              className="text-[#233cc1] cursor-pointer hover:text-lightpurple ml-5"
+              className="text-[#233cc1] cursor-pointer hover:text-lightpurple ml-2.5"
             />
           </div>
         ) : (
-          <div className={`flex justify-center w-1/2 m-auto`}>
+          <div
+            className={`${styles["add-note-form"]} flex justify-center m-auto`}>
             <form onSubmit={submitHandler}>
               <input
                 className={styles.addNoteInput}
@@ -440,15 +446,18 @@ const TaskDetails = ({ id, task, getUpdatedTask }) => {
             <span>Task Created:</span> {createDate(updatedTask.craetedAt)}
           </p>
           <TaskTimeLapsed
-            key={task._id}
+            key={updatedTask._id}
             clicked={clicked}
             targetClicked={targetClicked}
-            task={task}
+            task={updatedTask}
             totalTime={
-              task.timeLapsedH || task.timeLapsedM || task.timeLapsedS
+              updatedTask.timeLapsedH ||
+              updatedTask.timeLapsedM ||
+              updatedTask.timeLapsedS
                 ? Math.floor(
-                    (+task.timeLapsedH * 60 + +task.timeLapsedM) * 60
-                  ) + +task.timeLapsedS
+                    (+updatedTask.timeLapsedH * 60 + +updatedTask.timeLapsedM) *
+                      60
+                  ) + +updatedTask.timeLapsedS
                 : 0
             }
           />

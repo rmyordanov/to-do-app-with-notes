@@ -1,4 +1,4 @@
-import { updateNote, getOneNote } from "../../api/data";
+import { updateNote, getOneNote, getUserData } from "../../api/data";
 import styles from "./NoteEdit.module.css";
 import { useState } from "react";
 
@@ -11,6 +11,7 @@ const NoteEdit = ({
   isEditOpen,
   getIsOpen,
 }) => {
+  const userData = getUserData();
   const [isOpen, setIsOpen] = useState(isEditOpen);
 
   const submitHandler = async e => {
@@ -26,9 +27,9 @@ const NoteEdit = ({
         throw new Error("No Empty Fileds");
       }
 
-      updateNote(taskId, noteId, { note, noteText });
+      updateNote(userData.uid, taskId, noteId, { note, noteText });
 
-      const updateNoteData = await getOneNote(noteId);
+      const updateNoteData = await getOneNote(userData.uid, noteId);
       update(updateNoteData);
       e.target.reset();
 

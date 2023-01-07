@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { updateTask } from "../../../api/data";
+import { updateTask, getUserData } from "../../../api/data";
 import styles from "./TaskTimer.module.css";
 
 const TaskTimer = ({ task, totalTime, hour, min, getPause }) => {
+  const userData = getUserData();
   const [time, setTime] = useState(totalTime);
 
   const hours = Math.floor(time / 3600);
@@ -46,7 +47,7 @@ const TaskTimer = ({ task, totalTime, hour, min, getPause }) => {
     setPause(!pause);
     getPause(clickStop, e.target.className);
 
-    updateTask(task._id, {
+    updateTask(userData.uid, task._id, {
       durationH: hours,
       durationM: minutes,
       durationS: seconds,
@@ -69,7 +70,10 @@ const TaskTimer = ({ task, totalTime, hour, min, getPause }) => {
           data-tippy="Start Task"
           data-tippy-pos="up"
           className="play">
-          <img src="/images/play-button (1).png" alt="" />
+          <img
+            src="/react-firebase-to-do-app/images/play-button (1).png"
+            alt=""
+          />
         </a>
         <a
           onClick={stopTimer}
@@ -79,7 +83,7 @@ const TaskTimer = ({ task, totalTime, hour, min, getPause }) => {
           className="stop">
           <img
             className={"stop-timer-btn"}
-            src="/images/stop-button.png"
+            src="/react-firebase-to-do-app/images/stop-button.png"
             alt=""
           />
         </a>

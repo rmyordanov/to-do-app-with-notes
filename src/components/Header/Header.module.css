@@ -63,3 +63,49 @@ li.welcome-msg:hover,
 a.logo:hover {
   background-color: transparent !important;
 }
+
+.menu-trigger {
+  padding: 0px 40px;
+}
+.menu-icon {
+  color: #233cc1;
+}
+
+.dropdowm-menu {
+  position: relative;
+  z-index: 1;
+}
+.dropdowm-menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-90px);
+  transition: 0.5s ease;
+}
+.dropdowm-menu.inactive {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-140px);
+  transition: 0.5s ease;
+}
+
+/* Mobile */
+@media only screen and (max-width: 991px) {
+  .desktop-navbar {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+}
+
+/* DESKTOP */
+@media only screen and (min-width: 992px) {
+  .desktop-navbar {
+    display: inline-block;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}

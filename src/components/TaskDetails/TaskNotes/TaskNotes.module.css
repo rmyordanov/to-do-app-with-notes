@@ -38,3 +38,9 @@
 .overlay a.edit {
   display: none;
 }
+
+@media only screen and (max-width: 991px) {
+  .note-card {
+    min-width: 230px;
+  }
+}

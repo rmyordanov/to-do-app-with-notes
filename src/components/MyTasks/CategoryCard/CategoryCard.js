@@ -6,7 +6,7 @@ import { useRef } from "react";
 
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "../../../util";
-import { updateTask } from "../../../api/data";
+import { updateTask, getUserData } from "../../../api/data";
 
 const CategoryCard = ({
   id,
@@ -16,14 +16,16 @@ const CategoryCard = ({
   children,
   isCompleted,
   deleteCategory,
+  deletedTaskCard,
 }) => {
+  const userData = getUserData();
   const categoryCard = useRef(null);
 
   const [{ isOver }, drop] = useDrop({
     accept: ItemTypes.CARD,
 
     drop: item => {
-      updateTask(item.id, { category: categoryCard.current.id });
+      updateTask(userData.uid, item.id, { category: categoryCard.current.id });
     },
     collect: monitor => ({
       isOver: monitor.isOver(),
@@ -41,7 +43,6 @@ const CategoryCard = ({
     if (confirm) {
       isDeleted = true;
       deleteCategory(isDeleted, categoryCard.current.id);
-      console.log(isDeleted);
     } else {
       isDeleted = false;
     }
@@ -70,6 +71,7 @@ const CategoryCard = ({
               task={task}
               openTask={openTask}
               isCompleted={isCompleted}
+              deletedTaskCard={deletedTaskCard}
               priority={task.priority}
             />
           );

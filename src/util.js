@@ -1,5 +1,3 @@
-import { getUserData } from "./api/data.js";
-
 //Create Calendar
 export const calendar = () => {
   const getDaysInMonth = (year, month) => {
@@ -13,7 +11,7 @@ export const calendar = () => {
     } else {
       newDay = day;
     }
-    const date = year + "-" + month + "-" + newDay;
+    const date = year + "/" + month + "/" + newDay;
 
     return new Date(date).toLocaleString("defaut", {
       weekday: "short",
@@ -77,20 +75,20 @@ export const scrollEffect = () => {
 
 //Update user nav
 
-export const updateUserNav = () => {
-  const userData = getUserData();
-  if (userData) {
-    document.querySelector(".user").style.display = "inline-block";
-    document.querySelector(".guest").style.display = "none";
-    document.querySelector(
-      ".welcome-msg span"
-    ).textContent = `Welcome, ${userData.email}`;
-  } else {
-    document.querySelector(".user").style.display = "none";
-    document.querySelector(".guest").style.display = "inline-block";
-    document.querySelector(".welcome-msg span").textContent = "";
-  }
-};
+// export const updateUserNav = () => {
+//   const userData = getUserData();
+//   if (userData) {
+//     document.querySelector(".user").style.display = "inline-block";
+//     document.querySelector(".guest").style.display = "none";
+//     document.querySelector(
+//       ".welcome-msg span"
+//     ).textContent = `Welcome, ${userData.email}`;
+//   } else {
+//     document.querySelector(".user").style.display = "none";
+//     document.querySelector(".guest").style.display = "inline-block";
+//     document.querySelector(".welcome-msg span").textContent = "";
+//   }
+// };
 
 export const ItemTypes = {
   CARD: "card",

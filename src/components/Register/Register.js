@@ -36,8 +36,8 @@ const Register = () => {
         setUser(currentUser);
         e.target.reset();
         setUserData(currentUser);
-        updateUserNav();
-        navigate("/");
+        // updateUserNav();
+        navigate("/my-tasks");
       });
     } catch (error) {
       alert(error.message);

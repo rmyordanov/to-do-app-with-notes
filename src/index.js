@@ -11,7 +11,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <DndProvider backend={HTML5Backend}>
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename="/react-firebase-to-do-app">
       <App />
     </BrowserRouter>
   </DndProvider>

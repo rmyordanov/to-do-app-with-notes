@@ -47,6 +47,8 @@
   justify-content: space-between;
   margin: 50px 0px;
   align-items: center;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
 
 .add-plus-note-btn {
@@ -144,4 +146,59 @@ a.add-plus-btn {
 
 .search-notes {
   display: flex;
+}
+
+.notes-slider::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.add-note-form {
+  width: 50%;
+}
+
+@media only screen and (max-width: 991px) {
+  .notes-slider {
+    overflow: scroll !important;
+  }
+
+  .addNote {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 40px 0px;
+  }
+  .addNote input {
+    margin: 2px;
+  }
+
+  .overall-task-duration {
+    flex-direction: column;
+  }
+
+  .overall-task-duration p {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .note-cards,
+  .notes-slider {
+    margin: 0px;
+  }
+
+  .add-plus-note-btn {
+    width: 250px;
+  }
+
+  .btns {
+    display: flex;
+  }
+
+  .addNoteInput {
+    width: 90%;
+  }
+
+  .add-note-form {
+    width: 100%;
+  }
 }

@@ -13,12 +13,46 @@
 .create {
   text-align: center;
   margin: 50px;
-  height: 50vh;
+  /* height: 50vh; */
   margin-top: 150px;
+  margin-bottom: 250px;
 }
 .actions label {
   margin-right: 10px;
 }
 .duration {
   background: white;
+}
+
+.add-category {
+  padding: 5px 20px !important;
+  border: 1px solid grey;
+  border-radius: 15px;
+}
+
+/* Mobile */
+@media only screen and (max-width: 991px) {
+  .create {
+    margin: 15px 15px 60px 15px;
+  }
+  .options {
+    flex-direction: column;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+    border-bottom: 1px solid grey;
+  }
+
+  .addToDo {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px;
+  }
+
+  .input {
+    margin: 0px !important;
+  }
 }

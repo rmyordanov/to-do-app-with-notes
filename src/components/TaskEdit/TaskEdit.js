@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { getOneTask, updateTask } from "../../api/data";
+import { getOneTask, updateTask, getUserData } from "../../api/data";
 import styles from "./TaskEdit.module.css";
 
 const TaskEdit = ({ task, isClose, update }) => {
+  const userData = getUserData();
   const [isOpen, setIsOpen] = useState(true);
 
   const submitHandler = async e => {
@@ -26,9 +27,14 @@ const TaskEdit = ({ task, isClose, update }) => {
         throw new Error("No Empty Fileds");
       }
 
-      updateTask(task._id, { title, durationH, durationM, durationS });
+      updateTask(userData.uid, task._id, {
+        title,
+        durationH,
+        durationM,
+        durationS,
+      });
 
-      const updateTaskData = await getOneTask(task._id);
+      const updateTaskData = await getOneTask(userData.uid, task._id);
       update(updateTaskData);
       e.target.reset();
 

@@ -61,3 +61,14 @@ input.edit-note-input {
   border-radius: 25px;
   margin: 10px;
 }
+
+/* Mobile */
+@media only screen and (max-width: 991px) {
+  .text-area textarea {
+    width: 100%;
+  }
+
+  .card {
+    width: 350px;
+  }
+}

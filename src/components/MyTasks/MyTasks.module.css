@@ -24,6 +24,8 @@
   margin: 50px 0px;
   align-items: center;
   overflow: auto;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
 
 .add-category-btn {
@@ -76,4 +78,63 @@ a.add-plus-btn {
 
 .btns input {
   margin-right: 20px !important;
+}
+
+.kanban-container {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.calendar-arrow {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.category-cards::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.calendar-slider {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.calendar-slider::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.no-tasks {
+  margin: 150px auto;
+  text-align: center;
+}
+
+/* Mobile */
+@media only screen and (max-width: 991px) {
+  .category-cards,
+  .calendar-slider {
+    overflow: scroll !important;
+  }
+
+  .kanban-container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .calendar-arrow {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .add-category-btn {
+    width: 300px;
+  }
+
+  .btns {
+    display: flex;
+  }
+
+  .addCategoryInput {
+    width: 90%;
+    margin: auto;
+  }
 }

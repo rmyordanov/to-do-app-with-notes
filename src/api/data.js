@@ -13,8 +13,9 @@ import { auth } from "./api-firebase-config";
 import { v4 as uuidv4 } from "uuid";
 
 //--------------CATEGORIES---------------
-export async function getAllCategories() {
-  const path = ref(rdb, "categories");
+export async function getAllCategories(userId) {
+  // const path = ref(rdb, "categories");
+  const path = ref(rdb, `users/${userId}/categories`);
   let categories;
   // onValue(
   //   ref(path, snapshot => {
@@ -27,20 +28,23 @@ export async function getAllCategories() {
   return categories;
 }
 
-export function createCategory(category, data) {
+export function createCategory(userId, category, data) {
   const id = uuidv4();
-  const path = ref(rdb, "categories/" + category);
+  // const path = ref(rdb, "categories/" + category);
+  const path = ref(rdb, `users/${userId}/categories/${category}`);
   set(path, { ...data, _id: id });
 }
 
-export function deleteCategory(categoryId) {
-  const path = ref(rdb, "categories/" + categoryId);
+export function deleteCategory(userId, categoryId) {
+  // const path = ref(rdb, "categories/" + categoryId);
+  const path = ref(rdb, `users/${userId}/categories/${categoryId}`);
   remove(path);
 }
 
 //--------------TASKS--------------------
-export async function getAllTasks() {
-  const path = ref(rdb, "tasks");
+export async function getAllTasks(userId) {
+  // const path = ref(rdb, "tasks");
+  const path = ref(rdb, `users/${userId}/tasks`);
   let tasks;
   // onValue(
   //   ref(path, snapshot => {
@@ -55,8 +59,9 @@ export async function getAllTasks() {
   return tasks;
 }
 
-export async function getOneTask(id) {
-  const path = ref(rdb, `tasks/${id}`);
+export async function getOneTask(userId, id) {
+  // const path = ref(rdb, `tasks/${id}`);
+  const path = ref(rdb, `users/${userId}/tasks/${id}`);
   let task;
   // onValue(
   //   ref(path, snapshot => {
@@ -70,25 +75,29 @@ export async function getOneTask(id) {
   return task;
 }
 
-export function createTask(data) {
+export function createTask(userId, data) {
   const id = uuidv4();
-  const path = ref(rdb, "tasks/" + id);
+  // const path = ref(rdb, "tasks/" + id);
+  const path = ref(rdb, `users/${userId}/tasks/${id}`);
   set(path, { ...data, _id: id });
 }
 
-export function updateTask(id, data) {
-  const path = ref(rdb, "tasks/" + id);
+export function updateTask(userId, id, data) {
+  // const path = ref(rdb, "tasks/" + id);
+  const path = ref(rdb, `users/${userId}/tasks/${id}`);
   update(path, data);
 }
 
-export function deleteTask(id) {
-  const path = ref(rdb, "tasks/" + id);
+export function deleteTask(userId, id) {
+  // const path = ref(rdb, "tasks/" + id);
+  const path = ref(rdb, `users/${userId}/tasks/${id}`);
   remove(path);
 }
 
 //--------------NOTES---------------
-export async function getAllNotes(taskId) {
-  const path = ref(rdb, `tasks/${taskId}/notes`);
+export async function getAllNotes(userId, taskId) {
+  // const path = ref(rdb, `tasks/${taskId}/notes`);
+  const path = ref(rdb, `users/${userId}/tasks/${taskId}/notes`);
   let notes;
   // onValue(
   //   ref(path, snapshot => {
@@ -103,8 +112,9 @@ export async function getAllNotes(taskId) {
   return notes;
 }
 
-export async function getOneNote(taskId, noteId) {
-  const path = ref(rdb, `tasks/${taskId}/${noteId}`);
+export async function getOneNote(userId, taskId, noteId) {
+  // const path = ref(rdb, `tasks/${taskId}/${noteId}`);
+  const path = ref(rdb, `users/${userId}/tasks/${taskId}/notes/${noteId}`);
   let note;
   // onValue(
   //   ref(path, snapshot => {
@@ -119,19 +129,22 @@ export async function getOneNote(taskId, noteId) {
   return note;
 }
 
-export function createNote(taskId, data) {
+export function createNote(userId, taskId, data) {
   const id = uuidv4();
-  const path = ref(rdb, `tasks/${taskId}/notes/${id}`);
+  // const path = ref(rdb, `tasks/${taskId}/notes/${id}`);
+  const path = ref(rdb, `users/${userId}/tasks/${taskId}/notes/${id}`);
   set(path, { ...data, _id: id });
 }
 
-export function updateNote(taskId, noteId, data) {
-  const path = ref(rdb, `tasks/${taskId}/notes/${noteId}`);
+export function updateNote(userId, taskId, noteId, data) {
+  // const path = ref(rdb, `tasks/${taskId}/notes/${noteId}`);
+  const path = ref(rdb, `users/${userId}/tasks/${taskId}/notes/${noteId}`);
   update(path, data);
 }
 
-export function deleteNote(taskId, noteId) {
-  const path = ref(rdb, `tasks/${taskId}/notes/${noteId}`);
+export function deleteNote(userId, taskId, noteId) {
+  // const path = ref(rdb, `tasks/${taskId}/notes/${noteId}`);
+  const path = ref(rdb, `users/${userId}/tasks/${taskId}/notes/${noteId}`);
   remove(path);
 }
 

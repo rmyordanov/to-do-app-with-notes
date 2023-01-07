@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deleteNote } from "../../../api/data";
+import { deleteNote, getUserData } from "../../../api/data";
 import Modal from "../../Modal/Modal";
 import Note from "../../NoteEdit/Note";
 import styles from "./TaskNotes.module.css";
@@ -13,6 +13,7 @@ const TaskNotes = ({
   noteId,
   update,
 }) => {
+  const userData = getUserData();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isUpdated, setIsUpdated] = useState(false);
@@ -51,7 +52,7 @@ const TaskNotes = ({
         "Are you sure you want to delete this note?"
       );
       if (choice) {
-        deleteNote(taskId, noteId);
+        deleteNote(userData.uid, taskId, noteId);
         setDeletedNote(true);
       } else {
         return;
@@ -96,7 +97,7 @@ const TaskNotes = ({
             className={`edit ${styles.edit}`}>
             <img
               className={"edit-note-img"}
-              src="/images/edit (1).png"
+              src="/react-firebase-to-do-app/images/edit (1).png"
               alt=""
             />
           </a>
@@ -107,7 +108,7 @@ const TaskNotes = ({
             className={`delete ${styles.delete}`}>
             <img
               className={"delete-note-img"}
-              src="/images/trash-bin.png"
+              src="/react-firebase-to-do-app/images/trash-bin.png"
               alt=""
             />
           </a>

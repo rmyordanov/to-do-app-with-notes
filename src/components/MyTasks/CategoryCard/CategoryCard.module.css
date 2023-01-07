@@ -3,10 +3,17 @@
   border-radius: 25px;
   padding: 20px 30px;
   margin: 0px 30px;
-  min-height: 350px;
+  height: 350px;
   min-width: 400px;
   text-align: center;
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
+.category-card::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 .category-card.home {
   background: rgba(181, 199, 254, 0.4);
 }
@@ -27,4 +34,12 @@
 
 label {
   font-weight: 600;
+}
+
+/* Mobile */
+@media only screen and (max-width: 991px) {
+  .category-card {
+    min-width: 300px;
+    /* margin: 15px 30px; */
+  }
 }

@@ -3,7 +3,7 @@ import styles from "./TaskCard.module.css";
 import { ItemTypes } from "../../../util";
 
 import { useDrag } from "react-dnd";
-import { getOneTask } from "../../../api/data";
+import { getOneTask, getUserData, deleteTask } from "../../../api/data";
 
 import { useEffect, useState } from "react";
 
@@ -14,13 +14,15 @@ const TaskCard = ({
   openTask,
   isCompleted,
   priority,
+  deletedTaskCard,
 }) => {
+  const userData = getUserData();
   const [taskId, setTaskId] = useState(id);
   const [updatedTask, setUpdatedTask] = useState(task);
 
   useEffect(() => {
     const getTaskData = async () => {
-      const data = await getOneTask(taskId);
+      const data = await getOneTask(userData.uid, taskId);
       setUpdatedTask(data);
     };
     getTaskData();
@@ -38,16 +40,39 @@ const TaskCard = ({
   }));
 
   const getTask = async () => {
-    const taskData = await getOneTask(id);
+    const taskData = await getOneTask(userData.uid, id);
 
-    return taskData;
+    if (taskData !== null) {
+      return taskData;
+    } else {
+      return updatedTask;
+    }
   };
 
   const clickHandler = e => {
     e.preventDefault();
-    const isOpen = true;
+    let isOpen;
 
-    openTask(isOpen, taskId, getTask());
+    if (e.target.className === "delete-img") {
+      isOpen = false;
+
+      let isDeleted;
+      const choice = window.confirm(
+        "Are you sure you want to delete this task?"
+      );
+      if (choice) {
+        deleteTask(userData.uid, taskId);
+        isDeleted = true;
+      } else {
+        isDeleted = false;
+      }
+
+      deletedTaskCard(isDeleted, taskId);
+    } else {
+      isOpen = true;
+      openTask(isOpen, taskId, getTask());
+    }
+
     setTaskId(id);
   };
 
@@ -74,7 +99,11 @@ const TaskCard = ({
           data-tippy="Drag & Drop"
           data-tippy-pos="up"
           className="drag-btn">
-          <img className={"drag-btn"} src="/images/drag.png" alt="" />
+          <img
+            className={"drag-btn"}
+            src="/react-firebase-to-do-app/images/drag.png"
+            alt=""
+          />
         </a>
         <h3>{`${task.title.charAt(0).toUpperCase()}${task.title.slice(1)}`}</h3>
         <a
@@ -82,13 +111,19 @@ const TaskCard = ({
           data-tippy="Delete Task"
           data-tippy-pos="up"
           className="delete">
-          <img src="/images/trash-bin.png" alt="" />
+          <img
+            className="delete-img"
+            src="/react-firebase-to-do-app/images/trash-bin.png"
+            alt=""
+          />
         </a>
       </div>
       <div className={styles["bottom-part"]}>
-        <label>{task.priority}</label>
-        <label>{task.startDate.split("-").reverse().join("-")}</label>
-        <label>{task.startTime}</label>
+        <label className={styles.label}>{task.priority}</label>
+        <label className={styles.label}>
+          {task.startDate.split("-").reverse().join("-")}
+        </label>
+        <label className={styles.label}>{task.startTime}</label>
       </div>
     </div>
   );

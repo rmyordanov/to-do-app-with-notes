@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { updateTask } from "../../api/data";
+import { updateTask, getUserData } from "../../api/data";
 
 const TaskTimeLapsed = ({ clicked, task, totalTime, targetClicked }) => {
+  const userData = getUserData();
   const [timeElapsed, setTimeElapsed] = useState(totalTime);
 
   let hours = Math.floor(timeElapsed / 3600);
@@ -26,7 +27,7 @@ const TaskTimeLapsed = ({ clicked, task, totalTime, targetClicked }) => {
   }, [clicked]);
 
   if (clicked == false && targetClicked) {
-    updateTask(task._id, {
+    updateTask(userData.uid, task._id, {
       timeLapsedH: hours,
       timeLapsedM: minutes,
       timeLapsedS: seconds,
